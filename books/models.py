@@ -13,7 +13,6 @@ class Author(models.Model):
         ordering = ('name',)
 
 
-
 class Article(models.Model):
     name = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)
@@ -27,7 +26,7 @@ class Article(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=100)
-    articles = models.ManyToManyField(Article)
+    articles = models.ManyToManyField(Article, related_name='%(class)s_related')
 
     def __str__(self):
         return self.name
